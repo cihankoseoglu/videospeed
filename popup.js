@@ -21,13 +21,14 @@
 // };
 
 
+
 const slider = document.getElementById('slider');
 
 noUiSlider.create(slider, {
-    start: [80],
+    start: [1.00],
     range: {
-        'min': [0],
-        'max': [100]
+        'min': [0.1],
+        'max': [5.0]
     }
 });
 
