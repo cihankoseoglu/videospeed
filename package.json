@@ -2,7 +2,7 @@
   "name": "videospeed",
   "version": "1.0.0",
   "description": "A chrome extension for setting video element playback rates",
-  "main": "background.js",
+  "main": "src/background.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,5 +18,9 @@
   "homepage": "https://github.com/cihankoseoglu/videospeed#readme",
   "dependencies": {
     "nouislider": "^12.1.0"
+  },
+  "devDependencies": {
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2"
   }
 }
