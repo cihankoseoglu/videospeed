@@ -2,7 +2,7 @@
     "name": "VideoSpeed",
     "version": "1.0",
     "description": "A slider to set every the speed of every video element on the website. Works with Netflix and Youtube",
-    "permissions": ["activeTab", "storage", "declarativeContent"],
+    "permissions": ["activeTab", "declarativeContent"],
     "background": {
         "scripts": ["src/js/background.js"],
         "persistent": false
