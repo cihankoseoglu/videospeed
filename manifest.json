@@ -4,7 +4,7 @@
     "description": "A slider to set every the speed of every video element on the website. Works with Netflix and Youtube",
     "permissions": ["activeTab", "storage", "declarativeContent"],
     "background": {
-        "scripts": ["src/background.js"],
+        "scripts": ["src/js/background.js"],
         "persistent": false
     },
     "page_action": {
