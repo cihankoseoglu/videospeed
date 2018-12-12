@@ -51,7 +51,6 @@ noUiSlider.create(sliderEl, {
         mode: 'steps',
         density: 20,
         filter: filterSmallValues
-
     }
 });
 
@@ -61,7 +60,6 @@ noUiSlider.create(sliderEl, {
 document.querySelector('.button-reset').addEventListener('click', () => {
     sliderEl.noUiSlider.set(defaultPlaybackRate)
     changePlaybackRate(defaultPlaybackRate)
-
 });
 
 /**
