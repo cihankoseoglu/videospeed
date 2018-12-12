@@ -3,36 +3,26 @@
 // Brand grey: #aaaaaa
 // Brand white: #eeeeee
 
-
-// let changeColor = document.getElementById('changeColor');
-
-// chrome.storage.sync.get('color', data => {
-//     changeColor.style.backgroundColor = data.color;
-//     changeColor.setAttribute('value', data.color);
-// });
-
-// changeColor.onclick = function(element) {
-//     let color = element.target.value;
-//     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-//       chrome.tabs.executeScript(
-//           tabs[0].id,
-//           {code: 'document.body.style.backgroundColor = "' + color + '";'});
-//     });
-// };
-
-
-
+// HTML element selectors
 const sliderEl = document.querySelector('#slider');
 const playbackRateEl = document.querySelector('.playback-rate');
 
+// Global values
 const defaultPlaybackRate = 1.0;
-let currentPlaybackRate = 1.0;
-const largeValues = [0.1, 1.0, 2.0, 5.0];
 
-const filterSmallValues = value => {
-    return !!largeValues.includes(value) ? 1 : 0
-}
+/**
+ * Given a value, this function filters the value
+ * against the main playback rate values
+ *
+ * @param value - Playback value
+ */
+const filterSmallValues = value => !![0.1, 1.0, 2.0, 5.0].includes(value) ? 1 : 0
 
+/**
+ * Finds the video element on the current tab and sets currentPlaybackRate to be its playback rate
+ *
+ * @param currentPlaybackRate - Playback rate set by the slider
+ */
 const changePlaybackRate = currentPlaybackRate => {
     chrome.tabs.query({active: true, currentWindow: true}, tabs => {
         chrome.tabs.executeScript(
@@ -44,6 +34,9 @@ const changePlaybackRate = currentPlaybackRate => {
     })
 }
 
+/**
+ * Create slider on sliderEl element
+ */
 noUiSlider.create(sliderEl, {
     range: {
         'min': [0.1, 0.1],
@@ -62,20 +55,21 @@ noUiSlider.create(sliderEl, {
     }
 });
 
-// Set the slider value to default playback rate
+/**
+ * Set the slider value to default playback rate
+ */
 document.querySelector('.button-reset').addEventListener('click', () => {
     sliderEl.noUiSlider.set(defaultPlaybackRate)
-    currentPlaybackRate = sliderEl.noUiSlider.get()
-
-    //set video speed to currentPlaybackRate
-    changePlaybackRate(currentPlaybackRate)
+    changePlaybackRate(defaultPlaybackRate)
 
 });
 
+/**
+ * Sets the playback rate text to current playback rate whenever the slider value is updated
+ */
 sliderEl.noUiSlider.on('update', () => {
-    currentPlaybackRate = sliderEl.noUiSlider.get()
-    playbackRateEl.textContent = `Videos playing at ${currentPlaybackRate}x speed.`
-    changePlaybackRate(currentPlaybackRate)
+    playbackRateEl.textContent = `Videos playing at ${sliderEl.noUiSlider.get()}x speed.`
+    changePlaybackRate(sliderEl.noUiSlider.get())
 })
 
 
