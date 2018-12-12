@@ -29,8 +29,19 @@ const defaultPlaybackRate = 1.0;
 let currentPlaybackRate = 1.0;
 const largeValues = [0.1, 1.0, 2.0, 5.0];
 
-const filterSmallValues = (value, type) => {
+const filterSmallValues = value => {
     return !!largeValues.includes(value) ? 1 : 0
+}
+
+const changePlaybackRate = currentPlaybackRate => {
+    chrome.tabs.query({active: true, currentWindow: true}, tabs => {
+        chrome.tabs.executeScript(
+            tabs[0].id,
+            {
+                code: `document.querySelectorAll('video').forEach(v => v.playbackRate = ${currentPlaybackRate})`
+            }
+        )
+    })
 }
 
 noUiSlider.create(sliderEl, {
@@ -53,17 +64,18 @@ noUiSlider.create(sliderEl, {
 
 // Set the slider value to default playback rate
 document.querySelector('.button-reset').addEventListener('click', () => {
-    sliderEl.noUiSlider.set(defaultPlaybackRate);
+    sliderEl.noUiSlider.set(defaultPlaybackRate)
     currentPlaybackRate = sliderEl.noUiSlider.get()
 
-    //set storage value to 1
-    //set video speed to 1
+    //set video speed to currentPlaybackRate
+    changePlaybackRate(currentPlaybackRate)
 
 });
 
 sliderEl.noUiSlider.on('update', () => {
     currentPlaybackRate = sliderEl.noUiSlider.get()
     playbackRateEl.textContent = `Videos playing at ${currentPlaybackRate}x speed.`
+    changePlaybackRate(currentPlaybackRate)
 })
 
 
