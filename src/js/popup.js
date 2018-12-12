@@ -26,6 +26,7 @@ const sliderEl = document.querySelector('#slider');
 const playbackRateEl = document.querySelector('.playback-rate');
 
 const defaultPlaybackRate = 1.0;
+let currentPlaybackRate = 1.0;
 const largeValues = [0.1, 1.0, 2.0, 5.0];
 
 const filterSmallValues = (value, type) => {
@@ -53,6 +54,7 @@ noUiSlider.create(sliderEl, {
 // Set the slider value to default playback rate
 document.querySelector('.button-reset').addEventListener('click', () => {
     sliderEl.noUiSlider.set(defaultPlaybackRate);
+    currentPlaybackRate = sliderEl.noUiSlider.get()
 
     //set storage value to 1
     //set video speed to 1
@@ -60,7 +62,8 @@ document.querySelector('.button-reset').addEventListener('click', () => {
 });
 
 sliderEl.noUiSlider.on('update', () => {
-    playbackRateEl.textContent = `Videos playing at ${sliderEl.noUiSlider.get()}x speed.`
+    currentPlaybackRate = sliderEl.noUiSlider.get()
+    playbackRateEl.textContent = `Videos playing at ${currentPlaybackRate}x speed.`
 })
 
 
