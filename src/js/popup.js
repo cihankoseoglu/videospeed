@@ -24,11 +24,10 @@
 
 const slider = document.getElementById('slider');
 const defaultPlaybackRate = 1.0;
-const filterSmallValues = (value, type) => {
-    if (type == 0) {
-        return value / 1 == 1 ? 1 : -1
-    }
+const largeValues = [0.1, 1.0, 2.0, 5.0];
 
+const filterSmallValues = (value, type) => {
+    return !!largeValues.includes(value) ? 1 : 0
 }
 
 noUiSlider.create(slider, {
@@ -48,6 +47,9 @@ noUiSlider.create(slider, {
     // Move handle on tap, bars are draggable
     behaviour: 'tap-drag',
     tooltips: true,
+    format: {
+
+    }
 
     // Show a scale with the slider
     pips: {
