@@ -11,6 +11,9 @@ chrome.runtime.onInstalled.addListener(() => {
         new chrome.declarativeContent.PageStateMatcher({
             pageUrl: { hostSuffix: 'youtube.com' }
         }),
+        new chrome.declarativeContent.PageStateMatcher({
+            pageUrl: { hostSuffix: 'put.io' }
+        }),
     ],
           actions: [new chrome.declarativeContent.ShowPageAction()]
     }])
