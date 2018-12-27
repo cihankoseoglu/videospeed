@@ -68,7 +68,7 @@ document.querySelector('.button-reset').addEventListener('click', () => {
 sliderEl.noUiSlider.on('update', () => {
     playbackRateEl.textContent = `Videos playing at ${sliderEl.noUiSlider.get()}x speed.`
     changePlaybackRate(sliderEl.noUiSlider.get())
-})
+});
 
 
 
