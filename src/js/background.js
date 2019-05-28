@@ -14,6 +14,16 @@ chrome.runtime.onInstalled.addListener(() => {
         new chrome.declarativeContent.PageStateMatcher({
             pageUrl: { hostSuffix: 'put.io' }
         }),
+        new chrome.declarativeContent.PageStateMatcher({
+          pageUrl: {
+            hostSuffix: 'linkedin.com'
+          }
+        }),
+        new chrome.declarativeContent.PageStateMatcher({
+          pageUrl: {
+            hostSuffix: 'lynda.com'
+          }
+        }),
     ],
           actions: [new chrome.declarativeContent.ShowPageAction()]
     }])
