@@ -6,23 +6,7 @@ chrome.runtime.onInstalled.addListener(() => {
     chrome.declarativeContent.onPageChanged.addRules([{
       conditions: [
         new chrome.declarativeContent.PageStateMatcher({
-            pageUrl: { hostSuffix: 'netflix.com' }
-        }),
-        new chrome.declarativeContent.PageStateMatcher({
-            pageUrl: { hostSuffix: 'youtube.com' }
-        }),
-        new chrome.declarativeContent.PageStateMatcher({
-            pageUrl: { hostSuffix: 'put.io' }
-        }),
-        new chrome.declarativeContent.PageStateMatcher({
-          pageUrl: {
-            hostSuffix: 'linkedin.com'
-          }
-        }),
-        new chrome.declarativeContent.PageStateMatcher({
-          pageUrl: {
-            hostSuffix: 'lynda.com'
-          }
+            css: ["*"]
         }),
     ],
           actions: [new chrome.declarativeContent.ShowPageAction()]
